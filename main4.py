@@ -48,16 +48,16 @@ class ContactBot:
         if not parts:
             return "Enter a command."
         
-        command = parts[0]
+        cmd = parts[0].lower()
         args = parts[1:]
 
-        if command == "add":
+        if cmd == "add":
             return self.add_contact(args)
-        elif command == "change":
+        elif cmd == "change":
             return self.change_contact(args)
-        elif command == "phone":
+        elif cmd == "phone":
             return self.phone(args)
-        elif command == "all":
+        elif cmd == "all":
             return self.show_all(args)
         else:
             return "Unknown command."
@@ -68,6 +68,9 @@ def main():
     print("Welcome to the assistant bot!")
     while True:
         command = input("Enter a command: ")
+        if command.lower() in ["exit", "close"]:
+            print("Good bye!")
+            break
         response = bot.process_command(command)
         print(response)
 
